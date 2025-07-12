@@ -1,5 +1,4 @@
 import allure
-from data.url import main_url, url_orders_feed, url_detail_ingredients_bun_r_2
 from pages.basic_functionality_pages import BasicFunctionalityPages
 
 class TestBasicFunctionality:
@@ -10,7 +9,7 @@ class TestBasicFunctionality:
         # Подождать, пока "Конструктор" станет кликабелен, нажать кнопку "Конструктор"
         basic_functionality_pages.wait_and_click_constructor()
         with allure.step('Проверка, что актуальная страница - главная, на которой расположен конструктор'):
-            assert driver_feed.current_url == main_url
+            basic_functionality_pages.check_if_main_page(driver_feed)
 
     @allure.title('Успешный переход в раздел "Лента заказов" по клику на "Ленту заказов" в шапке страницы')
     def test_successful_transfer_by_clicking_orders_feed_to_section_orders_feed(self, driver_main):
@@ -18,7 +17,7 @@ class TestBasicFunctionality:
         # Подождать, пока "Лента заказов" станет кликабельна, нажать "Лента заказов"
         basic_functionality_pages.wait_and_click_orders_feed()
         with allure.step('Проверка, что актуальная страница - "Лента заказов"'):
-            assert driver_main.current_url == url_orders_feed
+            basic_functionality_pages.check_if_orders_feed_page(driver_main)
 
     @allure.title('Если кликнуть на ингредиент "Флюоресцентная булка R2-D3", появится всплывающее окно с деталями')
     def test_successful_appears_details_window_by_clicking_ingredient(self, driver_main):
@@ -28,7 +27,7 @@ class TestBasicFunctionality:
         # Дождаться, когда будет видимым окно "Детали ингредиента" и проверить, что на нём отображается название ингредиента "Флюоресцентная булка R2-D3"
         basic_functionality_pages.wait_and_check_ingredient_details_of_fluorescent_bun()
         with allure.step('Проверка, что актуальная страница - "Детали ингредиента""Флюоресцентная булка R2-D3"'):
-            assert driver_main.current_url == url_detail_ingredients_bun_r_2
+            basic_functionality_pages.check_if_buns_detail_page(driver_main)
 
     @allure.title('Всплывающее окно закрывается кликом по крестику')
     def test_successful_close_ingredients_details_by_click_close_button(self, driver_main):

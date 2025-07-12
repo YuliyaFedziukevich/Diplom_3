@@ -1,7 +1,7 @@
-from selenium.webdriver import ActionChains
+from selenium.webdriver import ActionChains, Keys
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
-from data.url import url_orders_feed
+from data.url import main_url, url_orders_feed, url_detail_ingredients_bun_r_2
 
 class BasePage:
     def __init__(self, driver):
@@ -81,3 +81,23 @@ class BasePage:
             driver.execute_script(script, source, target)
         else:
             ActionChains(driver).drag_and_drop(source, target).perform()
+
+    @staticmethod
+    # Проверка, что актуальная страница - главная, на которой расположен конструктор
+    def check_if_main_page(driver):
+        assert driver.current_url == main_url
+
+    @staticmethod
+    # Проверка, что актуальная страница - "Лента заказов"
+    def check_if_orders_feed_page(driver):
+        assert driver.current_url == url_orders_feed
+
+    @staticmethod
+    #Проверка, что актуальная страница - "Детали ингредиента""Флюоресцентная булка R2-D3"
+    def check_if_buns_detail_page(driver):
+        assert driver.current_url == url_detail_ingredients_bun_r_2
+
+    @staticmethod
+    # Закрытие окна с помощью Esc
+    def escape(driver):
+        ActionChains(driver).send_keys(Keys.ESCAPE).perform()

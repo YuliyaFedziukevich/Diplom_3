@@ -51,3 +51,4 @@ class BasicFunctionalityPages(BasePage):
         basket_area = self.find(IngredientsLocators.burger_constructor_basket)
         sauce_element = self.find_and_wait_visibility_space_sauce()
         self.drag_and_drop(driver, sauce_element, basket_area)
+

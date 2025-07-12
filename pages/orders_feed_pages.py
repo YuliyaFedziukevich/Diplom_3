@@ -1,6 +1,5 @@
 import allure
 from pages.base_page import BasePage
-from selenium.webdriver import ActionChains, Keys
 from data.user_data import UserData
 from locators.ingredients_locators import IngredientsLocators
 from locators.orders_feed_locators import OrdersFeedLocators, LocatorsEntry
@@ -48,7 +47,7 @@ class OrdersFeedPages(BasePage):
         # Получение номера заказа
         order_number = self.get_orders_number()
         # Закрыть окно "Идентификатор заказа"
-        ActionChains(driver).send_keys(Keys.ESCAPE).perform()
+        self.escape(driver)
         return order_number
 
     @allure.step('Создание заказа c выбранными ингредиентами для теста - булочкой, начинкой и соусом')

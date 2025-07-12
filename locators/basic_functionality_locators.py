@@ -17,7 +17,3 @@ class BasicFunctionalityLocators:
 
     # Крестик в окне "Детали ингредиента"
     close_button_ingredients_details = (By.XPATH, '//h2[text() = "Детали ингредиента"]/ancestor::section/div/button')
-
-
-
-
